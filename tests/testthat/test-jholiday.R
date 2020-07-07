@@ -35,6 +35,15 @@ test_that("Specific year's holiday", {
     length(jholiday(2020, "en")),
     16L
   )
+  res <- jholiday(2019:2020, "en")
+  expect_equal(
+    length(res),
+    16L
+  )
+  expect_equal(
+    unique(purrr::map_int(res, length)),
+    2L
+  )
 })
 
 test_that("Another approaches", {
@@ -42,21 +51,6 @@ test_that("Another approaches", {
   expect_equal(
     jholiday_spec(2000, "Coming of Age Day"),
     as.Date("2000-01-10")
-  )
-})
-
-test_that("Is jholiday works", {
-  expect_true(
-    is_jholiday("2020-01-01")
-  )
-  expect_false(
-    is_jholiday("2020-01-02")
-  )
-  expect_true(
-    is_jholiday("19930609")
-  )
-  expect_true(
-    is_jholiday(lubridate::ymd("1989-02-11"))
   )
   expect_equal(
     jholiday_spec(2020, "Foundation Day"),
@@ -234,15 +228,50 @@ test_that("Is jholiday works", {
   )
 })
 
+test_that("Is jholiday works", {
+  expect_true(
+    is_jholiday("2020-01-01")
+  )
+  expect_false(
+    is_jholiday("2020-01-02")
+  )
+  expect_true(
+    is_jholiday("19930609")
+  )
+  expect_true(
+    is_jholiday(lubridate::ymd("1989-02-11"))
+  )
+  # multiple dates
+  expect_equal(
+    is_jholiday(as.Date("2020-01-01") + 0:2),
+    c(TRUE, FALSE, FALSE)
+  )
+  # multiple dates in multiple years
+  expect_equal(
+    is_jholiday(as.Date(c("2019-01-01", "2020-01-01"))),
+    c(TRUE, TRUE)
+  )
+})
+
 test_that("Utils", {
   expect_true(
-    is_current_law_yr(1948)
+    are_all_current_law_yr(1948)
   )
   expect_warning(
     expect_false(
-    is_current_law_yr(1947),
-    "The year specified must be after the law was enacted in 1948"
-  ))
+      are_all_current_law_yr(1947),
+      "The year specified must be after the law was enacted in 1948"
+    )
+  )
+  expect_true(
+    are_all_current_law_yr(1948:1950)
+  )
+  expect_warning(
+    expect_false(
+      are_all_current_law_yr(1947:1949),
+      "The year specified must be after the law was enacted in 1948"
+    )
+  )
   expect_equal(
     find_date_by_wday(2020, 1, 2, 2),
     as.Date("2020-01-13")
@@ -254,6 +283,10 @@ test_that("Utils", {
   expect_equal(
     find_date_by_wday(2019, 12, 8, 6),
     as.Date(NA_character_)
+  )
+  expect_equal(
+    find_date_by_wday(2018:2020, 1, 2, 2),
+    as.Date(c("2018-01-08", "2019-01-14", "2020-01-13"))
   )
   expect_equal(
     shunbun_day(1966),

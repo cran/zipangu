@@ -16,7 +16,7 @@ version](https://img.shields.io/badge/R%3E%3D-3.2.0-blue.svg)](https://cran.r-pr
 [![Travis build
 status](https://travis-ci.org/uribo/zipangu.svg?branch=master)](https://travis-ci.org/uribo/zipangu)
 [![R build
-status](https://github.com/uribo/zipangu/workflows/R-CMD-check/badge.svg)](https://github.com/uribo/zipangu)
+status](https://github.com/uribo/zipangu/workflows/Pkgdown/badge.svg)](https://github.com/uribo/zipangu)
 [![Codecov test
 coverage](https://codecov.io/gh/uribo/zipangu/branch/master/graph/badge.svg)](https://codecov.io/gh/uribo/zipangu?branch=master)
 <!-- badges: end -->
@@ -60,6 +60,20 @@ separate_address("東京都千代田区大手町一丁目")
 #> [1] "大手町一丁目"
 ```
 
+Applied to data frame.
+
+``` r
+library(dplyr, warn.conflicts = FALSE)
+data.frame(address = c("東京都千代田区大手町一丁目", "岡山県岡山市北区清心町16-13")) %>% 
+  mutate(sss = purrr::pmap(., ~ separate_address(..1))) %>% 
+  tidyr::unnest_wider(col = sss)
+#> # A tibble: 2 x 4
+#>   address                     prefecture city       street      
+#>   <chr>                       <chr>      <chr>      <chr>       
+#> 1 東京都千代田区大手町一丁目  東京都     千代田区   大手町一丁目
+#> 2 岡山県岡山市北区清心町16-13 岡山県     岡山市北区 清心町16-13
+```
+
 ### Zip-code
 
 ``` r
@@ -73,8 +87,7 @@ read_zipcode(system.file("zipcode_dummy/13TOKYO_oogaki.CSV", package = "zipangu"
 #> #   is_zipcode_duplicate <dbl>, status <dbl>, modify_type <dbl>
 ```
 
-You can also load a file directly by specifying a
-URL.
+You can also load a file directly by specifying a URL.
 
 ``` r
 read_zipcode("https://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/jigyosyo.zip")
@@ -100,6 +113,13 @@ zipcode_spacer("305-0053", remove = TRUE)
 ``` r
 convert_jyear("R1")
 #> [1] 2019
+```
+
+### Date
+
+``` r
+convert_jdate("平成元年11月25日")
+#> [1] "1989-11-25"
 ```
 
 #### Public holidays in Japan

@@ -1,3 +1,15 @@
+# zipangu 0.2.1
+
+## New Features
+
+* `convert_jdate()` can converts the Japanese date format to as a date object.
+
+## Enhancement
+
+* `find_date_by_wday()`, `jholiday_spec()`, `jholiday()`, and `is_jholiday()`
+  are now vectorized and accept multiple `year`s (@yutannihilation, #15).
+* `separate_address()` also now vectorized.
+
 # zipangu 0.2.0
 
 * Added several functions to handle postal code data.

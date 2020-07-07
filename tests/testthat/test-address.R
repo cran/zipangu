@@ -63,6 +63,22 @@ test_that("address separate works", {
       street = "西七区"
     )
   )
+  expect_equal(
+    separate_address("愛知県蒲郡市蒲郡中部土地区画整理43街区5"),
+    list(
+      prefecture = "愛知県",
+      city = "蒲郡市",
+      street = "蒲郡中部土地区画整理43街区5"
+    )
+  )
+  expect_equal(
+    separate_address("つくば市谷田部陣場F-6街区3"),
+    list(
+      prefecture = NA_character_,
+      city = "つくば市",
+      street = "谷田部陣場F-6街区3"
+    )
+  )
   expect_equivalent(
     unlist(separate_address("神奈川県")),
     c("神奈川県", NA_character_, NA_character_)
@@ -78,6 +94,15 @@ test_that("address separate works", {
       city = "岡山市",
       street = NA_character_
     )
+  )
+  str <-
+    c("\u8328\u57ce\u770c\u3064\u304f\u3070\u5e02\u7814\u7a76\u5b66\u5712\u4e00\u4e01\u76ee1\u756a\u57301",
+      "\u5ca1\u5c71\u770c\u5ca1\u5c71\u5e02\u5317\u533a\u5927\u4f9b\u4e00\u4e01\u76ee1\u756a1\u53f7")
+  res <-
+    separate_address(str)
+  expect_length(
+    res,
+    2L
   )
 })
 
