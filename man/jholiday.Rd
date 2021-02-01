@@ -20,16 +20,16 @@ jholiday(year, lang = "en")
 \Sexpr[results=rd, stage=render]{lifecycle::badge("experimental")}
 }
 \details{
-Holiday information refers to data published as of January 1, 2020.
+Holiday information refers to data published as of December 21, 2020.
 Future holidays are subject to change.
 }
 \examples{
 jholiday_spec(2019, "Sports Day")
-jholiday_spec(2020, "Sports Day")
+jholiday_spec(2021, "Sports Day")
 # List of a specific year holidays
-jholiday(2020, "en")
+jholiday(2021, "en")
 }
 \references{
 Public Holiday Law \url{https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html},
-\url{https://elaws.e-gov.go.jp/search/elawsSearch/elaws_search/lsg0500/detail?lawId=323AC1000000178}
+\url{https://elaws.e-gov.go.jp/document?lawid=323AC1000000178}
 }
