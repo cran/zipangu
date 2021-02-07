@@ -1,3 +1,9 @@
+# zipangu 0.2.3
+
+## Fix
+
+- Determination of substitute holidays due to forgetting to update raw data (#31).
+
 # zipangu 0.2.2
 
 ## New Features
