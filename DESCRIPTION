@@ -1,6 +1,6 @@
 Package: zipangu
 Title: Japanese Utility Functions and Data
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: 
     c(person(given = "Shinya",
              family = "Uryu",
@@ -36,9 +36,9 @@ Imports: dplyr (>= 0.8.3), lifecycle (>= 0.1.0), lubridate (>= 1.7.4),
 Suggests: covr (>= 3.4.0), testthat (>= 2.1.0), scales (>= 1.1.0)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 NeedsCompilation: no
-Packaged: 2022-03-11 10:12:58 UTC; suryu
+Packaged: 2022-09-01 01:22:16 UTC; suryu
 Author: Shinya Uryu [aut, cre] (<https://orcid.org/0000-0002-0493-6186>),
   Hiroaki Yutani [ctb] (<https://orcid.org/0000-0002-3385-7233>),
   Kazuhiro Maeda [ctb],
@@ -46,4 +46,4 @@ Author: Shinya Uryu [aut, cre] (<https://orcid.org/0000-0002-0493-6186>),
   Akiru Kato [ctb]
 Maintainer: Shinya Uryu <suika1127@gmail.com>
 Repository: CRAN
-Date/Publication: 2022-03-11 10:20:02 UTC
+Date/Publication: 2022-09-01 02:20:03 UTC
